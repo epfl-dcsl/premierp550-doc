@@ -6,6 +6,9 @@ git clone https://github.com/eswincomputing/Esbd-77serial-nsign
 # Checkout to the correct branches
 cd meta-sifive; git checkout rel/meta-sifive/hifive-premier-p550
 
+# Go back to parent folder
+cd ..
+
 # U-boot
 git clone https://github.com/eswincomputing/u-boot
 cd u-boot; git checkout u-boot-2024.01-EIC7X
@@ -21,6 +24,9 @@ git apply ../meta-sifive/recipes-bsp/u-boot/files/riscv64/0006-riscv-sifive-fu74
 # Build
 make CROSS_COMPILE=riscv64-unknown-linux-gnu- ARCH=riscv hifive_premier_p550_defconfig
 make -j$(nproc)
+
+# Go back to root folder
+cd ..
 
 # OpenSBI
 git clone https://github.com/riscv-software-src/opensbi
@@ -40,7 +46,15 @@ git apply ../meta-sifive/recipes-bsp/opensbi/opensbi-sifive-hf-prem/0008-lib-sbi
 
 # Compile opensbi
 PLATFORM=eswin/eic770x FW_PAYLOAD_PATH=../u-boot/u-boot.bin FW_FDT_PATH=../u-boot/u-boot.dtb make CROSS_COMPILE=riscv64-unknown-linux-gnu- ARCH=riscv PLATFORM_RISCV_ISA=rv64imafdc_zicsr_zifencei
+
+# Go to parent folder
+cd ..
+
+# Build nsign tool
 cd Esbd-77serial-nsign; ./build.sh
+
+# Go back to root folder
+cd ..
 
 # Now copy the files
 cp Esbd-77serial-nsign/nsign .
