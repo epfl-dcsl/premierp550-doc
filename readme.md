@@ -69,8 +69,8 @@ rm combined.bin
 touch combined.bin
 
 # Load OpenSBI + u-boot, and then put Miralis in between
-dd if=fw_payload.bin of=combined.bin bs=0x1000 seek=0x0 conv=notrunc
-dd if=$MIRALIS_PATH of=combined.bin bs=0x1000 seek=0x80 conv=notrunc
+dd if=fw_payload.bin of=combined.bin bs=$(printf "%d" 0x1000) seek=0x0 conv=notrunc
+dd if=$MIRALIS_PATH of=combined.bin bs=$(printf "%d" 0x1000) seek=$(printf "%d" 0x80) conv=notrunc
 ```
 
 The newly built `combined.bin` now contains OpenSBI, Mialis, and u-boot.
