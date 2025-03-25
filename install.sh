@@ -23,7 +23,7 @@ git apply ../meta-sifive/recipes-bsp/u-boot/files/riscv64/0006-riscv-sifive-fu74
 
 # Build
 make CROSS_COMPILE=riscv64-unknown-linux-gnu- ARCH=riscv hifive_premier_p550_defconfig
-make -j$(nproc)
+make CROSS_COMPILE=riscv64-linux-gnu- RCH=riscv -j$(nproc)
 
 # Go back to root folder
 cd ..
@@ -39,9 +39,9 @@ git apply ../meta-sifive/recipes-bsp/opensbi/opensbi-sifive-hf-prem/0001-platfor
 git apply ../meta-sifive/recipes-bsp/opensbi/opensbi-sifive-hf-prem/0002-EIC770X-Added-changes-to-write-Fractional-register.patch
 git apply ../meta-sifive/recipes-bsp/opensbi/opensbi-sifive-hf-prem/0003-platform-eswin-Add-eic770X-UART-driver.patch
 git apply ../meta-sifive/recipes-bsp/opensbi/opensbi-sifive-hf-prem/0004-platform-eswin-Add-shutdown-and-reset-function.patch
-git apply ../meta-sifive/recipes-bsp/opensbi/opensbi-sifive-hf-prem/0005-lib-sbi-Configure-CSR-registers.patch
-git apply ../meta-sifive/recipes-bsp/opensbi/opensbi-sifive-hf-prem/0006-lib-sbi-eic770x-Add-PMP-for-TOR-region.patch
-git apply ../meta-sifive/recipes-bsp/opensbi/opensbi-sifive-hf-prem/0007-sbi-init-Modify-CSR-values.patch
+git apply ../meta-sifive/recipes-bsp/opensbi/opensbi-sifive-hf-prem/0005-lib-sbi-Configure-CSR-registers.patch # This
+git apply ../meta-sifive/recipes-bsp/opensbi/opensbi-sifive-hf-prem/0006-lib-sbi-eic770x-Add-PMP-for-TOR-region.patch # This
+git apply ../meta-sifive/recipes-bsp/opensbi/opensbi-sifive-hf-prem/0007-sbi-init-Modify-CSR-values.patch # This
 git apply ../meta-sifive/recipes-bsp/opensbi/opensbi-sifive-hf-prem/0008-lib-sbi-Add-new-PMP-region.patch
 
 # Compile opensbi
